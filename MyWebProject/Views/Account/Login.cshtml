@@ -1,0 +1,62 @@
+﻿
+   @model LoginVM
+
+@{
+    ViewData["Title"] = "Login";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
+    <title>Confirmation Popup</title>
+
+</head>
+<body>
+
+    <div class="container" style="min-height: 80vh;">
+
+        <div class="row d-flex align-items-center justify-content-center" style="min-height: 100%;">
+            <div class="col-md-4 card p-4">
+                <h2 class="text-center text-info mb-4">Login</h2>
+                <form asp-controller="Account" asp-action="Login" method="post" onsubmit="handleLoginSuccess()">
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <div class="mb-3">
+                        <label class="form-label" for="Email">Email:</label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="Password">Password:</label>
+                        <div class="input-group">
+                            <input asp-for="Password" type="password" class="form-control" id="passwordInput" />
+                            <button type="button" class="btn btn-outline-secondary" id="togglePassword">Show</button>
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <label class="form-check-label">
+                            <input asp-for="RememberMe" class="form-check-input" /> Remember Me
+                        </label>
+                    </div>
+                    <div class="mb-3">
+                        <input type="submit" value="Login" class="btn btn-primary btn-block" />
+                    </div>
+                    <div class="text-center">
+                        <a asp-action="Register" class="forgot-password-link">Don't Have an Account?</a>
+                        <span class="mx-2">|</span>
+                        <a asp-action="Forgot" class="forgot-password-link">Forgot Password?</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+   
+
+    <script src="~/js/Login.js" asp-append-version="true"></script>
+
+</body>
+</html>
+ 

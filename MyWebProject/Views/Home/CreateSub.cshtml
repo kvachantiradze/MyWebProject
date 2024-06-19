@@ -1,0 +1,21 @@
+﻿@model SubCategory
+<div class="container" style="min-height: 80vh;">
+    <div class="row justify-content-center align-items-center" style="min-height: 100%;">
+<form asp-action="CreateSub" method="post">
+   
+    <div class="form-group">
+        <label asp-for="SubCategoryName" class="control-label">Subcategory Name</label>
+        <input asp-for="SubCategoryName" class="form-control" />
+        <span asp-validation-for="SubCategoryName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CategoryId" class="control-label">Category</label>
+        <select asp-for="CategoryId" class="form-control" asp-items="@ViewBag.Categories"></select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+    </div>
+</div>

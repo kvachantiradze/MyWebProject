@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Orders.css" asp-append-version="true" />
+    <title>Confirmation Popup</title>
+</head>
+<body>
+    @model Order
+    <div class="container" style="min-height: 80vh;">
+        <div class="row justify-content-center align-items-center" style="min-height: 100%;">
+            <div class="container-fluid">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-md-8">
+                        <h1 class="text-center">Order Details</h1>
+                        <div class="card">
+                            <div class="card-body">
+                                <p><strong>Order ID:</strong> @Model.OrderId  </p>
+                                <p><strong>Date:</strong> @Model.OrderDate</p>
+                                <p><strong>Total Price:</strong> @Model.TotalPrice</p>
+                                <p><strong>User Name:</strong> @Model.UserId</p>
+                                <p><strong>User Name:</strong> @Model.</p>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Product Name</th>
+                                            <th>Quantity</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.Items)
+                                        {
+                                            <tr>
+                                                <td>@item.Product.ProductName</td>
+                                                <td>@item.Quantity</td>
+                                                <td>@item.Product.Price</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+                                    <a asp-action="Orders" asp-controller="Home" class="btn btn-primary btn-sm">Back to Orders</a>
+                                    <form method="post" asp-controller="Home" asp-action="DeleteOrder" asp-route-orderId="@Model.OrderId" class="m-0">
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete Order</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

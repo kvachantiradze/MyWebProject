@@ -1,0 +1,78 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Forgot.css" asp-append-version="true" />
+    <title>Confirmation Popup</title>
+
+</head>
+<body>
+
+    @model ForgotPasswordVm
+<div class="container" style="min-height: 80vh;">
+    <div class="row d-flex align-items-center justify-content-center" style="min-height: 100%;">
+    <div class="col-md-6">
+        <div class="card p-4">
+            <h2 class="text-center text-info mb-4">Forgot Password</h2>
+            <form id="forgotForm" asp-controller="Account" asp-action="Forgot" method="post">
+                <div asp-validation-summary="ModelOnly"></div>
+
+                <div class="mb-3">
+                    <label for="inputEmail" class="form-label">Email</label>
+                    <input type="email" id="inputEmail" asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="inputPassword" class="form-label">New Password</label>
+                    <input type="password" id="inputPassword" asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="inputConfirmPassword" class="form-label">Confirm Password</label>
+                    <input type="password" id="inputConfirmPassword" asp-for="ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button id="submitButton" type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+        <script src="~/js/Forgot.js" asp-append-version="true"></script>
+
+</body>
+</html>
+@* @section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#forgotForm").submit(function (event) {
+                event.preventDefault();
+                var formData = $(this).serialize();
+
+                $.ajax({
+                    url: $(this).attr("action"),
+                    method: $(this).attr("method"),
+                    data: formData,
+                    success: function (response) {
+                        var successMessage = "Password reset successful!";
+                        alert(successMessage);
+                        window.location.href = "/";
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+}
+ *@

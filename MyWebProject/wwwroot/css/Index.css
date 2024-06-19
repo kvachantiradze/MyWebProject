@@ -1,0 +1,161 @@
+﻿body {
+    background-image: url(/img/abstract-digital-grid-black-background.jpg);
+    background-size: cover;
+    color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    margin-top: 30px;
+}
+
+.search-form {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+}
+
+    .search-form .form-group {
+        margin-bottom: 10px;
+    }
+
+    .search-form input[type="text"],
+    .search-form select,
+    .search-form button {
+        width: 100%;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        padding: 10px;
+        border: none;
+    }
+
+    .search-form button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+    }
+
+        .search-form button:hover {
+            background-color: #0056b3;
+        }
+
+.card {
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #f8f9fa;
+    transition: transform 0.3s ease;
+}
+
+    .card:hover {
+        transform: translateY(-10px);
+    }
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.card-footer {
+    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn {
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    margin-bottom: 5px;
+}
+
+.btn-outline-primary,
+.btn-outline-success,
+.btn-outline-danger,
+.btn-outline-secondary {
+    border: 1px solid #f8f9fa;
+    color: #f8f9fa;
+}
+
+    .btn-outline-primary:hover {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    .btn-outline-success:hover {
+        background-color: #28a745;
+        color: #fff;
+    }
+
+    .btn-outline-danger:hover {
+        background-color: #dc3545;
+        color: #fff;
+    }
+
+    .btn-outline-secondary:hover {
+        background-color: #6c757d;
+        color: #fff;
+    }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+    .pagination .page-item {
+        margin: 0 5px;
+    }
+
+    .pagination .page-link {
+        color: #007bff;
+        border: 1px solid #007bff;
+    }
+
+        .pagination .page-link:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+    .pagination .page-item.active .page-link {
+        background-color: #28a745;
+        border-color: #28a745;
+        color: #fff;
+    }
+
+.form-group select {
+    appearance: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+}
+
+    .form-group select:focus {
+        outline: none;
+        border-color: #007bff;
+    }
+
+    .form-group select option {
+        background-color: #fff;
+        color: #333;
+    }
+
+

@@ -1,0 +1,76 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/User.css" asp-append-version="true" />
+    <title>Confirmation Popup</title>
+
+</head>
+<body>
+ 
+ @model List<IdentityUser>
+
+@{
+    ViewBag.Title = "Registered Users";
+}
+
+<form asp-action="Users" asp-controller="Account" method="get" class="search-form">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <input type="text" name="Name" class="form-control" placeholder="Search by Name" />
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" name="Email" class="form-control" placeholder="Email" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" name="PhoneNumber" class="form-control" placeholder="Phone Number" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary search-btn">Search</button>
+        </div>
+    </div>
+</form>
+
+
+
+<div class="container" style="min-height: 80vh;">
+    <div class="row d-flex align-items-center justify-content-center" style="min-height: 100%;">
+        <h2 style="text-align: center;">Registered Users</h2>
+        <table style="border-collapse: collapse; width: 100%; margin: 0 auto; border: 1px solid #ccc;">
+            <thead>
+                <tr style="background-color: #f2f2f2;">
+                    <th style="padding: 10px; border: 1px solid #ccc;">Username</th>
+                    <th style="padding: 10px; border: 1px solid #ccc;">Email</th>
+                    <th style="padding: 10px; border: 1px solid #ccc;">PhoneNumber</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr style="border: 1px solid #ccc;">
+                        
+                        <td style="padding: 10px; border: 1px solid #ccc;">@user.UserName</td>
+                        <td style="padding: 10px; border: 1px solid #ccc;">@user.Email</td>
+                        <td style="padding: 10px; border: 1px solid #ccc;">@user.PhoneNumber</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+</body>
+</html>

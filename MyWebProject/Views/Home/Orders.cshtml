@@ -1,0 +1,76 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Orders.css" asp-append-version="true" />
+    <title>Confirmation Popup</title>
+
+</head>
+<body>
+
+@model IEnumerable<Order>
+
+
+
+<form asp-action="Orders" asp-controller="Home" method="get" class="search-form">
+    <div class="row">
+        <div class="col-md-3">
+            <label for="startDate">Start Date:</label>
+            <input type="date" id="startDate" name="startDate" />
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="endDate">End Date:</label>
+                <input type="date" id="endDate" name="endDate" />
+            </div>
+        </div>
+       
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-primary search-btn">Search</button>
+        </div>
+    </div>
+</form>
+<div class="container-fluid" style="min-height: 80vh;">
+    <div class="row justify-content-center align-items-center" style="min-height: 100%;">
+        <div class="container">
+            <h1 class="text-center mt-4 mb-4">Orders</h1>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th class="text-center">Order ID</th>
+                            <th class="text-center">Date</th>
+                            <th class="text-center">Total Price</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            @foreach (var order in Model.Reverse())
+                        {
+                            <tr>
+                                <td class="text-center">@order.OrderId</td>
+                                <td class="text-center">@order.OrderDate.ToShortDateString()</td>
+                                <td class="text-center">$@order.TotalPrice</td>
+                                <td class="text-center">
+                                    <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+                                        <a asp-action="OrderDetails" asp-controller="Home" asp-route-id="@order.OrderId" class="btn btn-info btn-sm">View Details</a>
+                                        <form method="post" asp-controller="Home" asp-action="DeleteOrder" asp-route-orderId="@order.OrderId" class="m-0">
+                                            <button type="submit" class="btn btn-danger btn-sm">Delete Order</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="~/js/Orders.js" asp-append-version="true"></script>
+
+</body>
+</html>

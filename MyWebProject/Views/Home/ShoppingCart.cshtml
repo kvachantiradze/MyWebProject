@@ -1,0 +1,78 @@
+﻿@model ShoppingCart
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/ShoppingCart.css" asp-append-version="true" />
+    <title>Confirmation Popup</title>
+  
+</head>
+<body>
+
+    <div class="container" style="min-height: 80vh;">
+        <div class="row justify-content-center align-items-center" style="min-height: 100%;">
+            <h1>Shopping Cart</h1>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td>@item.Product.ProductName</td>
+
+                            <td>
+                                <form asp-action="UpdateQuantity" asp-controller="home" method="post">
+                                    <input type="hidden" name="productId" value="@item.Product.ProductId" />
+                                    <input type="number" name="quantity" min="1" value="@item.Quantity" />
+                                    <button type="submit">Update</button>
+                                </form>
+                            </td>
+                            <td>@item.Product.Price</td>
+                            <td>@(item.Quantity * item.Product.Price)</td>
+                            <td class="actions">
+                                <form asp-action="RemoveFromCart" asp-controller="home" method="post">
+                                    <input type="hidden" name="productId" value="@item.Product.ProductId" />
+                                    <button type="submit">Remove</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <p class="total">Total Price: @Model.TotalPrice</p>
+            <form id="orderForm" asp-action="PlaceOrder" asp-controller="home" method="post">
+                <button id="buyButton" type="button">Buy Now</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="popup-container" id="popup">
+        <p>Do you really want to buy?</p>
+        <button id="confirmButton">Yes</button>
+        <button id="cancelButton">No</button>
+    </div>
+
+    <div class="success-page" id="successPage">
+        <h1>Thank You for Your Purchase!</h1>
+        <p>Your order has been successfully placed.</p>
+    </div>
+
+    <script src="~/js/ShoppingCart.js" asp-append-version="true"></script>
+
+</body>
+</html>
+
+

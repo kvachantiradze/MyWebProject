@@ -1,0 +1,41 @@
+﻿@model Order
+
+@{
+    ViewBag.Title = "Order Details";
+}
+
+<h2>Order Details</h2>
+
+<h3>Order ID: @Model.OrderId</h3>
+
+<h4>TotalPrice: @Model.TotalPrice</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Quantity</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                
+                <td>@item.Product.ProductName</td>
+                <td>@item.Product.Price</td>
+                <td>@item.Product.Description</td>
+                <td>@item.Quantity</td>
+               
+            </tr>
+
+           
+        }
+
+    </tbody>
+</table>
+
+<a asp-controller="Account" asp-action="MyOrders" class="btn btn-primary">Back to My Orders</a>

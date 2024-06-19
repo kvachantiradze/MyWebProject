@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">User Profile</div>
+                    <div class="card-body">
+                        <form method="post" action="@Url.Action("Profile", "Account")">
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                <label for="Name">Name:</label>
+                                <input type="text" id="Name" name="Name" class="form-control" value="@Model.Name" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="Email">Email:</label>
+                                <input type="email" id="Email" name="Email" class="form-control" value="@Model.Email" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="PhoneNumber">Phone Number:</label>
+                                <input type="tel" id="PhoneNumber" name="PhoneNumber" class="form-control" value="@Model.PhoneNumber" required />
+                            </div>
+                            <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+                            <button type="submit" class="btn btn-primary">Update Profile</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+

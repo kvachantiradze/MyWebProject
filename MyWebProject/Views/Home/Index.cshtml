@@ -1,0 +1,94 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Index.css" asp-append-version="true" />
+    <title>Product Catalog</title>
+  
+</head>
+<body>
+    @model IEnumerable<AllProduct>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <form asp-action="Index" method="get" class="search-form">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-group">
+                            <input type="text" name="searchstring" class="form-control" placeholder="Search by Name" />
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <select id="SelectedCategoryId" name="category" class="form-control">
+                            <option value="">Select Category</option>
+                            @foreach (var category in ViewBag.Categories)
+                            {
+                                <option value="@category.CategoryId">@category.CategoryName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <select id="SubcategoryId" name="subcategory" class="form-control">
+                            <option value="">Select Subcategory</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <input type="text" name="min" class="form-control" placeholder="Min Price" />
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <input type="text" name="max" class="form-control" placeholder="Max Price" />
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <button type="submit" class="btn btn-primary search-btn">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="card-deck">
+                @foreach (var product in Model)
+                {
+                    var photoPath = "~/images/" + (product.PhotoPath ?? "noimage.jpg");
+                    <div class="card border-0 shadow-sm rounded-3" style="width: 15rem;">
+                        <img class="card-img-top imageThumbnail" src="@Url.Content(photoPath)" asp-append-version="true" alt="Product Image" />
+                        <div class="card-body">
+                            <h5 class="card-title text-center">@product.ProductName</h5>
+                            <p class="card-text text-center">$@product.Price</p>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 text-center">
+                            <a href="@Url.Action("Details", "Home", new { id = product.ProductId })" class="btn btn-sm btn-outline-primary me-2">View</a>
+                            <form id="addToCartForm" asp-action="AddToCart" asp-controller="Home" method="post" class="d-inline">
+                                <input type="hidden" name="productId" value="@product.ProductId" />
+                                <button type="submit" class="btn btn-sm btn-outline-success">Add to Cart</button>
+                            </form>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a href="@Url.Action("Edit", "Home", new { id = product.ProductId })" class="btn btn-sm btn-outline-secondary me-2">Edit</a>
+                                <form method="post" action="@Url.Action("Delete", "Home")" class="d-inline">
+                                    <input type="hidden" name="id" value="@product.ProductId" />
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                </form>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="row d-flex align-items-center justify-content-center mt-3">
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    @for (var i = 1; i <= ViewBag.TotalPages; i++)
+                    {
+                        <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
+                            <a class="page-link" href="?page=@i">@i</a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/js/index.js" asp-append-version="true"></script>
+</body>
+</html>
